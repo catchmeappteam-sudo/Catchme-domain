@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATCHME - Redefining Connections & Scheduling</title>
+    <title>CATCHME - Redefining Offline Connections & Scheduling</title>
     
     <!-- Open Graph (소셜 공유 정보) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="CATCHME - 차세대 사람과 일정의 연결">
-    <meta property="og:description" content="우리는 사람들의 일상과 약속, 연결 방식을 혁신하는 인텔리전스 플랫폼을 만듭니다.">
+    <meta property="og:title" content="CATCHME - 차세대 오프라인 스케줄링 플랫폼">
+    <meta property="og:description" content="우리는 사람과 사람의 오프라인 만남, 일정, 위치 상호작용을 혁신합니다.">
     <meta property="og:url" content="https://catchme-app.com">
     
     <style>
@@ -22,21 +22,22 @@
         body {
             background-color: #0b0f19;
             color: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            justify-content: space-between;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
         header {
-            padding: 24px 40px;
+            padding: 24px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .logo {
@@ -64,14 +65,14 @@
             height: 8px;
             background-color: #38bdf8;
             border-radius: 50%;
-            display: inline-block;
             box-shadow: 0 0 8px #38bdf8;
         }
 
+        /* Hero Section */
         .hero {
             text-align: center;
-            padding: 100px 20px 60px;
-            max-width: 840px;
+            padding: 100px 0 60px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -89,49 +90,114 @@
         .hero p {
             font-size: 20px;
             color: #94a3b8;
-            margin-bottom: 48px;
+            margin-bottom: 40px;
             line-height: 1.7;
-            font-weight: 400;
         }
 
-        .features-grid {
+        .cta-btn {
+            display: inline-block;
+            background-color: #38bdf8;
+            color: #0f172a;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .cta-btn:hover {
+            background-color: #0284c7;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Problem & Solution Section */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #f1f5f9;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 60px;
+        }
+
+        .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            max-width: 900px;
-            margin: 40px auto 0;
-            text-align: left;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
         }
 
-        .feature-card {
-            background: rgba(30, 41, 59, 0.5);
+        .info-box {
+            background: rgba(30, 41, 59, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 36px;
+            border-radius: 20px;
+        }
+
+        .info-box h3 {
+            font-size: 22px;
+            color: #38bdf8;
+            margin-bottom: 16px;
+        }
+
+        .info-box p {
+            color: #94a3b8;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* Core Values Section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 100px;
+        }
+
+        .value-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             padding: 28px;
             border-radius: 16px;
             transition: transform 0.3s ease;
         }
 
-        .feature-card:hover {
+        .value-card:hover {
             transform: translateY(-4px);
             border-color: rgba(56, 189, 248, 0.3);
         }
 
-        .feature-title {
+        .value-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .value-title {
             font-size: 18px;
             font-weight: 700;
             color: #f1f5f9;
             margin-bottom: 10px;
         }
 
-        .feature-desc {
+        .value-desc {
             font-size: 14px;
             color: #64748b;
             line-height: 1.6;
         }
 
+        /* Footer */
         footer {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: #64748b;
             font-size: 14px;
@@ -140,53 +206,79 @@
         footer a {
             color: #38bdf8;
             text-decoration: none;
-            font-weight: 500;
         }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .contact-info {
-            margin-top: 12px;
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .grid-2, .values-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">CATCHME</div>
-        <div class="status-badge">
-            <span class="status-dot"></span> In Development
-        </div>
-    </header>
-
-    <main class="hero">
-        <h1>사람과 일상을 잇는<br>차세대 오프라인 스케줄링 솔루션</h1>
-        <p>CATCHME 팀은 오프라인에서의 약속, 위치 공유, 그리고 일정 관리를 가장 간편하고 직관적으로 연결하기 위한 혁신적인 인텔리전스 플랫폼을 만들고 있습니다.</p>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-title">🗓 Seamless Scheduling</div>
-                <div class="feature-desc">복잡한 약속 조율 과정을 대폭 줄여주는 유연하고 반응성 높은 일정 관리</div>
+    <div class="container">
+        <header>
+            <div class="logo">CATCHME</div>
+            <div class="status-badge">
+                <span class="status-dot"></span> Stealth Mode
             </div>
-            <div class="feature-card">
-                <div class="feature-title">📍 Smart Location</div>
-                <div class="feature-desc">약속 상호작용과 지리적 위치 정보를 자연스럽게 결합한 최적의 경험</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">🤝 Privacy-First Grouping</div>
-                <div class="feature-desc">필요한 순간에만 안전하게 공유되는 프라이버시 중심의 그룹 커뮤니케이션</div>
-            </div>
-        </div>
-    </main>
+        </header>
 
-    <footer>
-        <p>&copy; 2026 CATCHME Labs. All rights reserved.</p>
-        <div class="contact-info">
-            제휴 및 스폰서십 문의: <a href="mailto:contact@catchme-app.com">contact@catchme-app.com</a>
-        </div>
-    </footer>
+        <main>
+            <!-- Hero -->
+            <section class="hero">
+                <h1>사람과 일상을 잇는<br>차세대 오프라인 인텔리전스</h1>
+                <p>CATCHME 팀은 오프라인에서의 약속 조율, 위치 상호작용, 그리고 일정 관리를 가장 간편하고 직관적으로 연결하기 위한 인텔리전스 플랫폼을 구축하고 있습니다.</p>
+                <a href="mailto:contact@catchme-app.com" class="cta-btn">비밀 제휴 및 투자 문의</a>
+            </section>
+
+            <!-- Mission & Problem -->
+            <section>
+                <div class="section-title">Why CATCHME?</div>
+                <div class="section-subtitle">우리가 해결하고자 하는 오프라인 상호작용의 문제점</div>
+                
+                <div class="grid-2">
+                    <div class="info-box">
+                        <h3>01. 파편화된 약속 프로세스</h3>
+                        <p>메신저에서의 수많은 대화, 각기 다른 지도 앱 검토, 일정표 대조까지—하나의 약속을 완성하기 위해 소모되는 무수한 피로감을 오프라인 스케줄링 통합 솔루션으로 해결합니다.</p>
+                    </div>
+                    <div class="info-box">
+                        <h3>02. 맥락 중심의 스케줄링</h3>
+                        <p>단순한 시간 입력을 넘어 사용자의 위치, 맥락, 이동 효율성을 고려한 AI 기반 인터랙션을 통해 가장 유연하고 자연스러운 오프라인 만남을 제안합니다.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Core Pillars -->
+            <section>
+                <div class="section-title">Core Pillars</div>
+                <div class="section-subtitle">CATCHME가 추구하는 3가지 기술적 지향점</div>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">⚡</div>
+                        <div class="value-title">Seamless Scheduling</div>
+                        <div class="value-desc">마찰 없는 UX로 약속 제안부터 확정까지의 시간을 극적으로 단축합니다.</div>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">📍</div>
+                        <div class="value-title">Context-Aware Engine</div>
+                        <div class="value-desc">지리적 데이터와 일정 맥락을 결합해 최적의 모임 경험을 창출합니다.</div>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🔒</div>
+                        <div class="value-title">Privacy-First Design</div>
+                        <div class="value-desc">필요한 순간에만 최소한의 정보가 안전하게 공유되도록 프라이버시를 보호합니다.</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 CATCHME Labs Inc. All rights reserved.</p>
+            <p style="margin-top: 8px;">Contact: <a href="mailto:contact@catchme-app.com">contact@catchme-app.com</a></p>
+        </footer>
+    </div>
 
 </body>
 </html>
