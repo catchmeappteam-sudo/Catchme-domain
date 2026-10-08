@@ -1,284 +1,225 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATCHME - Redefining Offline Connections & Scheduling</title>
-    
-    <!-- Open Graph (소셜 공유 정보) -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="CATCHME - 차세대 오프라인 스케줄링 플랫폼">
-    <meta property="og:description" content="우리는 사람과 사람의 오프라인 만남, 일정, 위치 상호작용을 혁신합니다.">
-    <meta property="og:url" content="https://catchme-app.com">
-    
+    <title>CATCHME - Smart Schedule & Location Sync</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf4f6',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            900: '#881337',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
-        body {
-            background-color: #0b0f19;
-            color: #f8fafc;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        header {
-            padding: 24px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #38bdf8;
-            letter-spacing: 1.5px;
-        }
-
-        .status-badge {
-            background: rgba(56, 189, 248, 0.1);
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #38bdf8;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #38bdf8;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 0 60px;
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #94a3b8;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background-color: #38bdf8;
-            color: #0f172a;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 14px 32px;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
-        }
-
-        .cta-btn:hover {
-            background-color: #0284c7;
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        /* Problem & Solution Section */
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #f1f5f9;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 16px;
-            color: #64748b;
-            margin-bottom: 60px;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 100px;
-        }
-
-        .info-box {
-            background: rgba(30, 41, 59, 0.4);
+        body { font-family: 'Pretendard', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 36px;
-            border-radius: 20px;
         }
-
-        .info-box h3 {
-            font-size: 22px;
-            color: #38bdf8;
-            margin-bottom: 16px;
-        }
-
-        .info-box p {
-            color: #94a3b8;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        /* Core Values Section */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-bottom: 100px;
-        }
-
-        .value-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 28px;
-            border-radius: 16px;
-            transition: transform 0.3s ease;
-        }
-
-        .value-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(56, 189, 248, 0.3);
-        }
-
-        .value-icon {
-            font-size: 28px;
-            margin-bottom: 16px;
-        }
-
-        .value-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #f1f5f9;
-            margin-bottom: 10px;
-        }
-
-        .value-desc {
-            font-size: 14px;
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        footer a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 36px; }
-            .grid-2, .values-grid { grid-template-columns: 1fr; }
+        .glow-effect {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(244, 63, 94, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: 0;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-brand-500 selection:text-white relative overflow-x-hidden">
 
-    <div class="container">
-        <header>
-            <div class="logo">CATCHME</div>
-            <div class="status-badge">
-                <span class="status-dot"></span> Stealth Mode
+    <!-- Background Glows -->
+    <div class="glow-effect top-[-100px] left-[-100px]"></div>
+    <div class="glow-effect bottom-[10%] right-[-100px]"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-rose-400 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                    <i data-lucide="compass" class="w-6 h-6 text-white"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">CATCHME</span>
             </div>
-        </header>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#features" class="hover:text-white transition">핵심 기능</a>
+                <a href="#architecture" class="hover:text-white transition">기술 아키텍처</a>
+                <a href="#status" class="hover:text-white transition flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>시스템 정상 운영중
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://catchme-29rt.onrender.com" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-sm font-semibold transition shadow-lg shadow-brand-600/25 flex items-center gap-2">
+                    <span>앱 실행하기</span>
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
 
-        <main>
-            <!-- Hero -->
-            <section class="hero">
-                <h1>사람과 일상을 잇는<br>차세대 오프라인 인텔리전스</h1>
-                <p>CATCHME 팀은 오프라인에서의 약속 조율, 위치 상호작용, 그리고 일정 관리를 가장 간편하고 직관적으로 연결하기 위한 인텔리전스 플랫폼을 구축하고 있습니다.</p>
-                <a href="mailto:contact@catchme-app.com" class="cta-btn">비밀 제휴 및 투자 문의</a>
-            </section>
+    <!-- Hero Section -->
+    <section class="pt-36 pb-20 md:pt-48 md:pb-32 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-brand-400 text-xs font-semibold mb-8 border border-brand-500/20">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Next-Generation Spatial & Schedule Sync Platform</span>
+            </div>
+            <h1 class="text-4xl md:text-7xl font-extrabold tracking-tight max-w-4xl mx-auto leading-[1.1] mb-8">
+                만남의 파편을 하나로 잇다, <br/>
+                <span class="bg-gradient-to-r from-brand-500 via-rose-400 to-amber-300 bg-clip-text text-transparent">CATCHME 로케이션 & 일정 관리</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 font-light">
+                복잡한 모임 일정 조율과 독립형 커스텀 맵 기술을 결합해, 사람과 장소를 가장 직관적으로 연결하는 프로덕트입니다.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://catchme-29rt.onrender.com" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition shadow-xl shadow-brand-600/30 flex items-center justify-center gap-3 text-base">
+                    <i data-lucide="play-circle" class="w-5 h-5"></i>
+                    <span>라이브 앱 체험하기</span>
+                </a>
+                <a href="#architecture" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-slate-900 text-slate-300 font-semibold transition flex items-center justify-center gap-2 text-base border border-slate-800">
+                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                    <span>기술 스택 보기</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-            <!-- Mission & Problem -->
-            <section>
-                <div class="section-title">Why CATCHME?</div>
-                <div class="section-subtitle">우리가 해결하고자 하는 오프라인 상호작용의 문제점</div>
-                
-                <div class="grid-2">
-                    <div class="info-box">
-                        <h3>01. 파편화된 약속 프로세스</h3>
-                        <p>메신저에서의 수많은 대화, 각기 다른 지도 앱 검토, 일정표 대조까지—하나의 약속을 완성하기 위해 소모되는 무수한 피로감을 오프라인 스케줄링 통합 솔루션으로 해결합니다.</p>
+    <!-- Live Preview Mockup Component -->
+    <section class="pb-24 relative z-10">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="glass-card rounded-2xl p-3 md:p-6 shadow-2xl border border-slate-800/80 relative">
+                <!-- Browser Header Bar -->
+                <div class="flex items-center justify-between mb-4 px-2 pb-3 border-b border-slate-800/60">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
                     </div>
-                    <div class="info-box">
-                        <h3>02. 맥락 중심의 스케줄링</h3>
-                        <p>단순한 시간 입력을 넘어 사용자의 위치, 맥락, 이동 효율성을 고려한 AI 기반 인터랙션을 통해 가장 유연하고 자연스러운 오프라인 만남을 제안합니다.</p>
+                    <div class="text-xs text-slate-400 bg-slate-900/80 px-4 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                        <i data-lucide="lock" class="w-3 h-3 text-emerald-400"></i>
+                        <span>https://catchme-29rt.onrender.com</span>
+                    </div>
+                    <div class="text-xs text-slate-500 hidden sm:block">Render Cloud Live</div>
+                </div>
+
+                <!-- Simulated App Interface Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left: Schedule Sync Widget -->
+                    <div class="glass-card rounded-xl p-5 border border-slate-800 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand-400">Smart Schedule</span>
+                                <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-200 mb-2">그룹 최적의 시간 도출</h3>
+                            <p class="text-xs text-slate-400 mb-4">팀원들의 가용 일정을 실시간으로 취합하고 공백을 찾아냅니다.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
+                                <span class="text-slate-300">팀 회의 (Weekly)</span>
+                                <span class="text-emerald-400 font-medium">100% 매칭</span>
+                            </div>
+                            <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
+                                <span class="text-slate-300">오프라인 밋업</span>
+                                <span class="text-amber-400 font-medium">조율 중 (3/4)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle: Custom Standalone Map (Core Feature) -->
+                    <div class="glass-card rounded-xl p-5 border border-slate-800 lg:col-span-2 relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#f43f5e_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rose-400">Standalone Map Engine</span>
+                                    <span class="px-2 py-0.5 rounded text-[10px] bg-rose-500/25 text-rose-300 font-semibold">Custom Built</span>
+                                </div>
+                                <i data-lucide="map" class="w-4 h-4 text-slate-400"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-200 mb-1">독립형 커스텀 지도 인터페이스</h3>
+                            <p class="text-xs text-slate-400">기존 레거시 맵 의존성을 탈피하여 경량화되고 유연한 장소 공유 환경을 제공합니다.</p>
+                        </div>
+                        <div class="relative z-10 mt-4 flex items-center gap-3">
+                            <div class="px-3 py-1.5 rounded-lg bg-brand-600/20 border border-brand-500/30 text-brand-300 text-xs flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> 중간 지점 자동 계산
+                            </div>
+                            <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 text-xs flex items-center gap-2">
+                                <i data-lucide="users" class="w-3.5 h-3.5"></i> 실시간 멤버 포지션
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- Core Pillars -->
-            <section>
-                <div class="section-title">Core Pillars</div>
-                <div class="section-subtitle">CATCHME가 추구하는 3가지 기술적 지향점</div>
-
-                <div class="values-grid">
-                    <div class="value-card">
-                        <div class="value-icon">⚡</div>
-                        <div class="value-title">Seamless Scheduling</div>
-                        <div class="value-desc">마찰 없는 UX로 약속 제안부터 확정까지의 시간을 극적으로 단축합니다.</div>
+    <!-- Features Grid -->
+    <section id="features" class="py-20 border-t border-slate-900 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-4">Core Capabilities</h2>
+                <p class="text-slate-400">효율적인 그룹 인터랙션을 위해 설계된 CATCHME만의 핵심 아키텍처입니다.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl border border-slate-800/80 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-600/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6">
+                        <i data-lucide="calendar-check" class="w-6 h-6"></i>
                     </div>
-                    <div class="value-card">
-                        <div class="value-icon">📍</div>
-                        <div class="value-title">Context-Aware Engine</div>
-                        <div class="value-desc">지리적 데이터와 일정 맥락을 결합해 최적의 모임 경험을 창출합니다.</div>
-                    </div>
-                    <div class="value-card">
-                        <div class="value-icon">🔒</div>
-                        <div class="value-title">Privacy-First Design</div>
-                        <div class="value-desc">필요한 순간에만 최소한의 정보가 안전하게 공유되도록 프라이버시를 보호합니다.</div>
-                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-3">스마트 가용성 공유</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">복잡한 설문 조사 없이, 링크 공유만으로 팀원 전체의 빈 시간을 알고리즘이 자동으로 분석해 최적의 일정을 찾아냅니다.</p>
                 </div>
-            </section>
-        </main>
+                <div class="glass-card p-8 rounded-2xl border border-slate-800/80 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-600/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6">
+                        <i data-lucide="navigation" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-3">커스텀 맵 엔진</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">기존 지도 서비스의 한계를 극복하고 앱에 완벽히 밀착된 독립형 커스텀 맵을 탑재하여 빠르고 직관적인 장소 조율이 가능합니다.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl border border-slate-800/80 hover:border-brand-500/50 transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-600/10 border border-brand-500/20 flex items-center justify-center text-brand-400 mb-6">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-200 mb-3">실시간 그룹 매니지먼트</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">그룹 내 멤버들의 참여 상태와 변동 사항을 실시간으로 동기화하여 커뮤니케이션 비용을 제로에 가깝게 줄입니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <footer>
-            <p>&copy; 2026 CATCHME Labs Inc. All rights reserved.</p>
-            <p style="margin-top: 8px;">Contact: <a href="mailto:contact@catchme-app.com">contact@catchme-app.com</a></p>
-        </footer>
-    </div>
+    <!-- Footer / Startup Badge -->
+    <footer class="py-12 border-t border-slate-900 text-center text-xs text-slate-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-400">CATCHME Service</span>
+                <span>&copy; 2026 All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400">Claude Startup Program Ready</span>
+                <a href="https://catchme-29rt.onrender.com" target="_blank" class="text-brand-400 hover:underline">Live App &rarr;</a>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
