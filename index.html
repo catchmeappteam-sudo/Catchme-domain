@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATCHME - Smart Schedule & Location Sync</title>
+    <title>CATCHME - Smart Schedule & Location Sync Platform</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -61,6 +61,7 @@
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                 <a href="#features" class="hover:text-white transition">핵심 기능</a>
                 <a href="#architecture" class="hover:text-white transition">기술 아키텍처</a>
+                <a href="#contact" class="hover:text-white transition">문의하기</a>
                 <a href="#status" class="hover:text-white transition flex items-center gap-2">
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>시스템 정상 운영중
                 </a>
@@ -93,9 +94,9 @@
                     <i data-lucide="play-circle" class="w-5 h-5"></i>
                     <span>라이브 앱 체험하기</span>
                 </a>
-                <a href="#architecture" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-slate-900 text-slate-300 font-semibold transition flex items-center justify-center gap-2 text-base border border-slate-800">
-                    <i data-lucide="cpu" class="w-5 h-5"></i>
-                    <span>기술 스택 보기</span>
+                <a href="mailto:contact@catchme-app.com" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-slate-900 text-slate-300 font-semibold transition flex items-center justify-center gap-2 text-base border border-slate-800">
+                    <i data-lucide="mail" class="w-5 h-5 text-brand-400"></i>
+                    <span>비즈니스 문의 (contact@catchme-app.com)</span>
                 </a>
             </div>
         </div>
@@ -204,12 +205,33 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 border-t border-slate-900 relative z-10 bg-slate-900/40">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="glass-card p-10 rounded-3xl border border-slate-800 shadow-2xl">
+                <div class="w-12 h-12 rounded-2xl bg-brand-600/20 border border-brand-500/30 flex items-center justify-center text-brand-400 mx-auto mb-6">
+                    <i data-lucide="mail" class="w-6 h-6"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Get in Touch</h2>
+                <p class="text-slate-400 text-sm md:text-base mb-8 max-w-xl mx-auto">
+                    파트너십, 서비스 제휴 및 클로드 스타트업 프로그램 관련 문의는 아래 공식 이메일로 연락 주시기 바랍니다.
+                </p>
+                <a href="mailto:contact@catchme-app.com" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold transition text-base">
+                    <span class="text-brand-400">contact@catchme-app.com</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-slate-400"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer / Startup Badge -->
-    <footer class="py-12 border-t border-slate-900 text-center text-xs text-slate-500 relative z-10">
+    <footer class="py-12 border-t border-slate-900 text-xs text-slate-500 relative z-10">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-slate-400">CATCHME Service</span>
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-slate-400">CATCHME Corp.</span>
                 <span>&copy; 2026 All rights reserved.</span>
+                <span class="text-slate-600">|</span>
+                <a href="mailto:contact@catchme-app.com" class="text-slate-400 hover:text-slate-200">contact@catchme-app.com</a>
             </div>
             <div class="flex items-center gap-3">
                 <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400">Claude Startup Program Ready</span>
